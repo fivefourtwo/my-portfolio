@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from '@carbon/icons-react';
 import buttonStyles from '../Button/Button.module.css';
@@ -51,23 +52,112 @@ const DATA = {
   },
 };
 
+const IMAGE_WIDTH = 711;
+const IMAGE_GAP = 24;
+const IMAGE_STEP = IMAGE_WIDTH + IMAGE_GAP;
+const LOOP_OFFSET = 5 * IMAGE_STEP; /* 5 images + 4 gaps + gap before repeat */
+const BASE_SPEED = 2; /* px per frame at 60fps */
+const HOVER_SPEED_FACTOR = 0.25; /* slow down to 25% on hover */
+
 const ProjectCarousel = ({ variant }) => {
   const images = IMAGES[variant];
   const { title, description, href } = DATA[variant];
   const isAccessability = variant === 'accessability';
 
+  const stripRef = useRef(null);
+  const scrollOffsetRef = useRef(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragStartOffsetRef = useRef(0);
+
+  /* Auto-scroll animation loop */
+  useEffect(() => {
+    const prefersReducedMotion =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let rafId;
+    const tick = () => {
+      if (!isDraggingRef.current) {
+        const speed = isHovered ? BASE_SPEED * HOVER_SPEED_FACTOR : BASE_SPEED;
+        scrollOffsetRef.current =
+          (scrollOffsetRef.current + speed) % LOOP_OFFSET;
+        if (stripRef.current) {
+          stripRef.current.style.transform = `translateX(-${scrollOffsetRef.current}px)`;
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [isHovered]);
+
+  const handlePointerDown = (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    isDraggingRef.current = true;
+    setIsDragging(true);
+    dragStartXRef.current = e.clientX;
+    dragStartOffsetRef.current = scrollOffsetRef.current;
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDraggingRef.current) return;
+    const delta = e.clientX - dragStartXRef.current;
+    /* Drag right = reveal content from left = decrease offset */
+    let newOffset = dragStartOffsetRef.current - delta;
+    newOffset = ((newOffset % LOOP_OFFSET) + LOOP_OFFSET) % LOOP_OFFSET;
+    scrollOffsetRef.current = newOffset;
+    dragStartXRef.current = e.clientX;
+    dragStartOffsetRef.current = newOffset;
+    if (stripRef.current) {
+      stripRef.current.style.transform = `translateX(-${newOffset}px)`;
+    }
+  };
+
+  const handlePointerUp = () => {
+    isDraggingRef.current = false;
+    setIsDragging(false);
+  };
+
+  const handlePointerLeave = () => {
+    setIsHovered(false);
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      setIsDragging(false);
+    }
+  };
+
+  /* Duplicate images for seamless looping */
+  const loopedImages = [...images, ...images];
+
   return (
     <article className={styles.carousel}>
-      <div className={styles.imageStrip}>
-        <div className={styles.imageStripInner}>
-          {images.map((src, i) => (
+      <div
+        className={styles.imageStrip}
+        aria-hidden="true"
+        onPointerEnter={() => setIsHovered(true)}
+        onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+      >
+        <div ref={stripRef} className={styles.imageStripInner}>
+          {loopedImages.map((src, i) => (
             <img
               key={i}
               src={src}
               alt=""
               aria-hidden="true"
               className={styles.image}
-              style={{ left: ['-488px', '247px', '982px', '1717px', '2452px'][i] }}
+              style={{
+                left: `${(i % 5) * IMAGE_STEP + Math.floor(i / 5) * LOOP_OFFSET}px`,
+              }}
             />
           ))}
         </div>

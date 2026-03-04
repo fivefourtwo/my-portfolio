@@ -11,15 +11,18 @@
   grid-column: 1 / 12;
   width: var(--content-width);
   height: 400px;
-  overflow: visible;
   position: relative;
+  user-select: none;
+  touch-action: pan-y;
 }
 
 .imageStripInner {
   position: relative;
-  width: 3200px;
+  width: 7350px; /* 2 × loop offset (5 × (711 + 24)) for seamless loop */
   height: 400px;
+  will-change: transform;
 }
+
 
 .image {
   position: absolute;
