@@ -16,6 +16,8 @@
 .sectionTitle {
   padding-top: var(--section-padding-y-lg);
   padding-bottom: var(--section-padding-y-md);
+  max-width: var(--content-width);
+  width: 100%;
 }
 
 .sectionTitle .container {
@@ -47,15 +49,36 @@
   padding: var(--section-padding-y-lg) 0;
 }
 
-/* Orange bar: full-bleed, centered, behind content */
+/* Wrapper ties style element to image so bar keeps fixed pixel distance from image edges */
+.autofillImageStyleWrapper,
+.editorImageStyleWrapper,
+.outputImageStyleWrapper {
+  position: relative;
+  grid-column: 1 / 13;
+}
+
+.autofillImageStyleWrapper .imageFull,
+.editorImageStyleWrapper .imageFull,
+.outputImageStyleWrapper .imageFull {
+  position: relative;
+}
+
+/* Crop autofill image by 80px from the bottom */
+.autofillImageStyleWrapper .imageFull {
+  overflow: hidden;
+}
+
+.autofillImageStyleWrapper .imageFull .sectionImage {
+  margin-bottom: -15%;
+}
+
 .autofillStyleElement {
   position: absolute;
-  top: 187px;
+  top: var(--style-element-offset-top);
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  /* min-width: 2800px; */
-  height: 550px;
+  height: calc(100% - var(--style-element-offset-top) - 12%);
   background-color: var(--accent-teach-bg);
   pointer-events: none;
   z-index: 0;
@@ -63,12 +86,11 @@
 
 .editorStyleElement {
   position: absolute;
-  top: 189px;
+  top: var(--style-element-offset-top);
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  /* min-width: 2800px; */
-  height: 420px;
+  height: calc(100% - var(--style-element-offset-top) - var(--style-element-offset-bottom));
   background-color: var(--accent-teach-bg);
   pointer-events: none;
   z-index: 0;
@@ -76,12 +98,11 @@
 
 .outputStyleElement {
   position: absolute;
-  top: 308px;
+  top: var(--style-element-offset-top);
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  /* min-width: 2800px; */
-  height: 360px;
+  height: calc(100% - var(--style-element-offset-top));
   background-color: var(--accent-teach-bg);
   pointer-events: none;
   z-index: 0;
@@ -167,4 +188,106 @@
 /* Output section: image + handwritten note overlay */
 .outputImageWrapper {
   position: relative;
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 0 var(--page-padding-tablet);
+  }
+
+  .section {
+    padding: var(--section-padding-y-lg-tablet) 0;
+  }
+
+  .sectionTitle {
+    padding-top: var(--section-padding-y-lg-tablet);
+    padding-bottom: var(--section-padding-y-md-tablet);
+  }
+
+  .titleBlock {
+    grid-column: 1 / 9;
+  }
+
+  .sectionHeading {
+    grid-column: 1 / 9;
+  }
+
+  .sectionBody {
+    grid-column: 1 / 9;
+  }
+
+  .description {
+    grid-column: 1 / 9;
+  }
+
+  .imageFull {
+    grid-column: 1 / 9;
+  }
+
+  .autofillImageStyleWrapper,
+  .editorImageStyleWrapper,
+  .outputImageStyleWrapper {
+    grid-column: 1 / 9;
+  }
+
+  .sectionAutofill,
+  .sectionEditor,
+  .sectionOutput {
+    padding: var(--section-padding-y-lg-tablet) 0;
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 var(--page-padding-mobile);
+  }
+
+  .section {
+    padding: var(--section-padding-y-lg-mobile) 0;
+  }
+
+  .sectionTitle {
+    padding-top: var(--section-padding-y-lg-mobile);
+    padding-bottom: var(--section-padding-y-md-mobile);
+  }
+
+  .sectionTitle .container {
+    row-gap: var(--grid-gap-mobile);
+  }
+
+  .titleBlock {
+    grid-column: 1 / 5;
+  }
+
+  .sectionHeading {
+    grid-column: 1 / 5;
+  }
+
+  .sectionBody {
+    grid-column: 1 / 5;
+  }
+
+  .description {
+    grid-column: 1 / 5;
+  }
+
+  .imageFull {
+    grid-column: 1 / 5;
+  }
+
+  .autofillImageStyleWrapper,
+  .editorImageStyleWrapper,
+  .outputImageStyleWrapper {
+    grid-column: 1 / 5;
+  }
+
+  .sectionAutofill,
+  .sectionEditor,
+  .sectionOutput {
+    padding: var(--section-padding-y-lg-mobile) 0;
+  }
 }

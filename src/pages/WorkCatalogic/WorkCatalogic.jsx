@@ -138,23 +138,24 @@ const WorkCatalogic = () => {
 
         {/* Dark block: A system that adapts to you + Tags mockup + Personalized Tags */}
         <section className={styles.sectionDark} aria-labelledby="adapts-heading">
-          <div className={styles.darkStyleElement} aria-hidden="true" />
           <div className={styles.container}>
             <p className={styles.darkStatement} id="adapts-heading">
               A system that adapts to you,{' '}
-              <br />
               not the other way around.
             </p>
-            <div className={styles.tagsMockupWrap}>
-              <video
-                src={tagsMockupVideo}
-                className={styles.tagsMockupImage}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-label="Catalogic My Tags interface showing personalized tag structure"
-              />
+            <div className={styles.tagsMockupStyleWrapper}>
+              <div className={styles.darkStyleElement} aria-hidden="true" />
+              <div className={styles.tagsMockupWrap}>
+                <video
+                  src={tagsMockupVideo}
+                  className={styles.tagsMockupImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="Catalogic My Tags interface showing personalized tag structure"
+                />
+              </div>
             </div>
             <h2 className={styles.tagsBlockHeading}>
               Personalized Tags for Adaptive Organization
@@ -205,61 +206,64 @@ const WorkCatalogic = () => {
           className={styles.sectionSimilarity}
           aria-labelledby="similarity-map-heading"
         >
-          <div className={styles.similarityStyleElement} aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.similarityTextBlock}>
-              <h2 id="similarity-map-heading" className={styles.sectionHeadingLight}>
-                Transfering the physical experience of spatial memory
-              </h2>
-              <p className={styles.sectionTextLight}>
-                Exploration of the map reveals the spatial organization of
-                sound clusters, allowing an intuitive understanding of where
-                distinct musical areas reside. The filter panel highlights
-                tracks based on specific features, while the confidence slider
-                adjusts the selection strictness. A high setting isolates the
-                most definitive matches, facilitating the discovery of latent
-                relationships between tracks.
-              </p>
-            </div>
-            <div className={styles.similarityImageWrap}>
-              <video
-                src={similarityMapVideo}
-                className={styles.similarityImage}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-label="Catalogic Similarity Map showing spatial organization of tracks"
-              />
+            <div className={styles.similarityImageStyleWrapper}>
+              <div className={styles.similarityStyleElement} aria-hidden="true" />
+              <div className={styles.similarityImageWrap}>
+                <video
+                  src={similarityMapVideo}
+                  className={styles.similarityImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="Catalogic Similarity Map showing spatial organization of tracks"
+                />
+              </div>
+              <div className={styles.similarityTextBlock}>
+                <h2 id="similarity-map-heading" className={styles.sectionHeadingLight}>
+                  Transfering the physical experience of spatial memory
+                </h2>
+                <p className={styles.sectionTextLight}>
+                  Exploration of the map reveals the spatial organization of
+                  sound clusters, allowing an intuitive understanding of where
+                  distinct musical areas reside. The filter panel highlights
+                  tracks based on specific features, while the confidence slider
+                  adjusts the selection strictness. A high setting isolates the
+                  most definitive matches.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         {/* XY Mode */}
         <section className={styles.sectionXY} aria-labelledby="xy-mode-heading">
-          <div className={styles.xyStyleElement} aria-hidden="true" />
           <div className={styles.xyContent}>
-            <div className={styles.xyImageWrap}>
-              <video
-                src={xyModeVideo}
-                className={styles.xyImage}
-                autoPlay
-                loop
-                muted
-                playsInline
-                aria-label="Catalogic XY Mode for mapping parameters to axes"
-              />
-            </div>
-            <div className={styles.xyTextBlock}>
-              <h2 id="xy-mode-heading" className={styles.sectionHeadingLight}>
-                Visualizing Sonic Gradients and Transitions
-              </h2>
-              <p className={styles.sectionTextLight}>
-                The XY Mode offers structured control for targeted set planning.
-                Users can map any two analyzed parameters directly onto the axes.
-                This reveals precise gradients and functional bridges between
-                distinct musical styles.
-              </p>
+            <div className={styles.xyImageStyleWrapper}>
+              <div className={styles.xyStyleElement} aria-hidden="true" />
+              <div className={styles.xyImageWrap}>
+                <video
+                  src={xyModeVideo}
+                  className={styles.xyImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  aria-label="Catalogic XY Mode for mapping parameters to axes"
+                />
+              </div>
+              <div className={styles.xyTextBlock}>
+                <h2 id="xy-mode-heading" className={styles.sectionHeadingLight}>
+                  Visualizing Sonic Gradients and Transitions
+                </h2>
+                <p className={styles.sectionTextLight}>
+                  The XY Mode offers structured control for targeted set planning.
+                  Users can map any two analyzed parameters directly onto the axes.
+                  This reveals precise gradients and functional bridges between
+                  distinct musical styles.
+                </p>
+              </div>
             </div>
           </div>
         </section>

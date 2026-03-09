@@ -123,14 +123,16 @@ const WorkAccessAbility = () => {
           className={styles.sectionWithGradient}
           aria-labelledby="control-module-heading"
         >
-          <div className={styles.gradientStyleElementControlModule} aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.imageFull}>
-              <img
-                src={controlModuleImg}
-                alt="AccessAbility interchangeable control module with threaded steering mount for joystick attachments"
-                className={`${styles.sectionImage} ${styles.controlModuleImage}`}
-              />
+            <div className={styles.controlModuleImageStyleWrapper}>
+              <div className={styles.gradientStyleElementControlModule} aria-hidden="true" />
+              <div className={styles.imageFull}>
+                <img
+                  src={controlModuleImg}
+                  alt="AccessAbility interchangeable control module with threaded steering mount for joystick attachments"
+                  className={`${styles.sectionImage} ${styles.controlModuleImage}`}
+                />
+              </div>
             </div>
             <h2 id="control-module-heading" className={styles.sectionHeading}>
               The Interchangeable Control Module
@@ -149,14 +151,16 @@ const WorkAccessAbility = () => {
           className={styles.sectionWithGradient}
           aria-labelledby="adaptable-base-heading"
         >
-          <div className={styles.gradientStyleElementAdaptableBase} aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.imageFull}>
-              <img
-                src={baseImg}
-                alt="AccessAbility adaptable system base supporting the arm and stabilizing the hand"
-                className={styles.sectionImage}
-              />
+            <div className={styles.adaptableBaseImageStyleWrapper}>
+              <div className={styles.gradientStyleElementAdaptableBase} aria-hidden="true" />
+              <div className={styles.imageFull}>
+                <img
+                  src={baseImg}
+                  alt="AccessAbility adaptable system base supporting the arm and stabilizing the hand"
+                  className={styles.sectionImage}
+                />
+              </div>
             </div>
             <h2 id="adaptable-base-heading" className={styles.sectionHeading}>
               The Adaptable System Base
@@ -175,7 +179,6 @@ const WorkAccessAbility = () => {
           className={styles.sectionWithGradient}
           aria-labelledby="application-heading"
         >
-          <div className={styles.gradientStyleElementApplication} aria-hidden="true" />
           <div className={styles.container}>
             <h2 id="application-heading" className={styles.applicationHeading}>
               Application for Custom Hardware Configuration
@@ -186,12 +189,15 @@ const WorkAccessAbility = () => {
               translates these physical metrics into precise manufacturing
               parameters, guaranteeing a highly individualized hardware fit.
             </p>
-            <div className={styles.applicationImage}>
-              <img
-                src={systemMockupImg}
-                alt="AccessAbility digital service application for custom hardware configuration"
-                className={styles.sectionImage}
-              />
+            <div className={styles.applicationImageStyleWrapper}>
+              <div className={styles.gradientStyleElementApplication} aria-hidden="true" />
+              <div className={styles.applicationImage}>
+                <img
+                  src={systemMockupImg}
+                  alt="AccessAbility digital service application for custom hardware configuration"
+                  className={styles.sectionImage}
+                />
+              </div>
             </div>
           </div>
         </section>

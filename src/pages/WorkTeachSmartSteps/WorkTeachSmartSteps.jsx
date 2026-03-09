@@ -94,10 +94,11 @@ const WorkTeachSmartSteps = () => {
           className={styles.sectionAutofill}
           aria-labelledby="autofill-heading"
         >
-          <div className={styles.autofillStyleElement} aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.imageFull}>
-              <video
+            <div className={styles.autofillImageStyleWrapper}>
+              <div className={styles.autofillStyleElement} aria-hidden="true" />
+              <div className={styles.imageFull}>
+                <video
                 src={autoFillVideo}
                 className={styles.sectionImage}
                 autoPlay
@@ -106,6 +107,7 @@ const WorkTeachSmartSteps = () => {
                 playsInline
                 aria-label="Automated fill interface pre-filling configuration parameters based on semantic context"
               />
+              </div>
             </div>
             <h2 id="autofill-heading" className={styles.sectionHeading}>
               Mitigating Decision Fatigue Through Contextual Auto-Completion
@@ -124,10 +126,11 @@ const WorkTeachSmartSteps = () => {
           className={styles.sectionEditor}
           aria-labelledby="editor-heading"
         >
-          <div className={styles.editorStyleElement} aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.imageFull}>
-              <video
+            <div className={styles.editorImageStyleWrapper}>
+              <div className={styles.editorStyleElement} aria-hidden="true" />
+              <div className={styles.imageFull}>
+                <video
                 src={editorVideo}
                 className={styles.sectionImage}
                 autoPlay
@@ -136,6 +139,7 @@ const WorkTeachSmartSteps = () => {
                 playsInline
                 aria-label="Task editing interface for granular refinement of didactic and student materials"
               />
+              </div>
             </div>
             <h2 id="editor-heading" className={styles.sectionHeading}>
               An Editor for Granular Refinement of Didactic and Student
@@ -156,15 +160,17 @@ const WorkTeachSmartSteps = () => {
           className={styles.sectionOutput}
           aria-labelledby="output-heading"
         >
-          <div className={styles.outputStyleElement} aria-hidden="true" />
           <div className={styles.container}>
-            <div className={styles.imageFull}>
-              <div className={styles.outputImageWrapper}>
-                <img
+            <div className={styles.outputImageStyleWrapper}>
+              <div className={styles.outputStyleElement} aria-hidden="true" />
+              <div className={styles.imageFull}>
+                <div className={styles.outputImageWrapper}>
+                  <img
                   src={outputPdfImg}
                   alt="Ready-to-use PDF worksheet with competency-focused exercises and didactic guide"
                   className={styles.sectionImage}
                 />
+                </div>
               </div>
             </div>
             <h2 id="output-heading" className={styles.sectionHeading}>

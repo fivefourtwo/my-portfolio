@@ -37,7 +37,6 @@
   --page-padding: 32px;
   --section-padding-y-lg: 120px;
   --section-padding-y-md: 60px;
-  --section-gap: 120px;
 
   /* Component sizing */
   --header-height: 56px;
@@ -51,6 +50,10 @@
   /* AccessAbility: gradient style element */
   --style-element-access: #DAE1E7;
 
+  /* Style element offset from image edges; bar scales with image when inside image wrapper */
+  --style-element-offset-top: 20%;
+  --style-element-offset-bottom: 4%;
+
   /* Media (images, videos) */
   --radius-media: 16px;
 
@@ -59,4 +62,44 @@
   --shadow-analysis: var(--shadow);
   --shadow-descriptors: var(--shadow);
   --shadow-manual-tagging: var(--shadow);
+
+  /* ---- Responsive tokens (tablet & mobile) ---- */
+
+  /* Breakpoints */
+  --bp-tablet: 768px;
+  --bp-mobile: 480px;
+
+  /* Page padding */
+  --page-padding-tablet: 24px;
+  --page-padding-mobile: 16px;
+
+  /* Grid */
+  --grid-columns-tablet: 8;
+  --grid-columns-mobile: 4;
+  --grid-gap-tablet: 24px;
+  --grid-gap-mobile: 16px;
+
+  /* Section / hero spacing */
+  --section-padding-y-lg-tablet: 80px;
+  --section-padding-y-md-tablet: 40px;
+  --section-padding-y-lg-mobile: 80px;
+  --section-padding-y-md-mobile: 40px;
+  --hero-padding-top-tablet: 64px;
+  --hero-padding-top-mobile: 106px;
+
+  /* Footer */
+  --footer-row-gap-mobile: 16px;
+}
+
+/* Media border radius: tablet 16px, mobile 8px */
+@media (max-width: 768px) {
+  :root {
+    --radius-media: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --radius-media: 8px;
+  }
 }

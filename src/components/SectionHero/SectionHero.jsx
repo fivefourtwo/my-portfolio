@@ -49,6 +49,9 @@ const INFO_ROWS = [
   { key: 'year', label: 'Year' },
 ];
 
+const INFO_LEFT_KEYS = ['team', 'projectContext', 'myRole'];
+const INFO_RIGHT_KEYS = ['duration', 'year'];
+
 const SectionHero = ({ project }) => {
   const data = PROJECTS[project];
 
@@ -67,16 +70,37 @@ const SectionHero = ({ project }) => {
         {data.context}
       </p>
       <div className={styles.infoBlock}>
-        <hr className={styles.divider} aria-hidden="true" />
-        {INFO_ROWS.map(({ key, label }) => (
-          <Fragment key={key}>
-            <div className={styles.infoRow}>
-              <span className={styles.label}>{label}</span>
-              <span className={styles.value}>{data[key]}</span>
-            </div>
-            <hr className={styles.divider} aria-hidden="true" />
-          </Fragment>
-        ))}
+        <div className={styles.infoBlockLeft}>
+          <hr className={styles.divider} aria-hidden="true" />
+          {INFO_LEFT_KEYS.map((key, index) => {
+            const { label } = INFO_ROWS.find((r) => r.key === key);
+            const isLastLeft = index === INFO_LEFT_KEYS.length - 1;
+            return (
+              <Fragment key={key}>
+                <div className={styles.infoRow}>
+                  <span className={styles.label}>{label}</span>
+                  <span className={styles.value}>{data[key]}</span>
+                </div>
+                {!isLastLeft && <hr className={styles.divider} aria-hidden="true" />}
+              </Fragment>
+            );
+          })}
+        </div>
+        <div className={styles.infoBlockRight}>
+          <hr className={styles.divider} aria-hidden="true" />
+          {INFO_RIGHT_KEYS.map((key) => {
+            const { label } = INFO_ROWS.find((r) => r.key === key);
+            return (
+              <Fragment key={key}>
+                <div className={styles.infoRow}>
+                  <span className={styles.label}>{label}</span>
+                  <span className={styles.value}>{data[key]}</span>
+                </div>
+                <hr className={styles.divider} aria-hidden="true" />
+              </Fragment>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
