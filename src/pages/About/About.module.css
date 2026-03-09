@@ -16,18 +16,21 @@
 .content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto auto 180px;
+  grid-template-rows: auto auto;
   row-gap: 40px;
   width: var(--content-width);
+  max-width: 100%;
+  padding: 0 var(--page-padding);
+  box-sizing: border-box;
 }
 
 .headline {
-  grid-column: 1 / 13;
+  grid-column: 1 / 5;
   grid-row: 1;
   font-family: var(--font-heading);
-  font-size: var(--text-display);
+  font-size: var(--text-h1);
   font-weight: 400;
-  line-height: 0.96;
+  line-height: var(--line-height-headline);
   letter-spacing: -2.88px;
   color: var(--black);
   margin: 0;
@@ -64,7 +67,84 @@
   border-radius: 4px;
 }
 
-/* ---- Tablet ---- */
+/* ---- Education & Professional Experience ---- */
+.sectionEducation,
+.sectionExperience {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--section-padding-y-lg) 0;
+  overflow: clip;
+}
+
+.sectionContent {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  row-gap: 40px;
+  width: var(--content-width);
+  max-width: 100%;
+  padding: 0 var(--page-padding);
+  box-sizing: border-box;
+}
+
+.sectionHeading {
+  grid-column: 1 / 5;
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--black);
+  margin: 0;
+}
+
+.entryList {
+  grid-column: 7 / 13;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.entryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.entryBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entryTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-small);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--black);
+  margin: 0;
+}
+
+.entrySubtitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-small);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--dark-grey);
+  margin: 0;
+}
+
+.divider {
+  border: none;
+  border-bottom: 1px solid var(--light-grey);
+  margin: 0;
+  width: 100%;
+}
+
+/* Tablet: show Professional Experience first (order), single column for sections */
 @media (max-width: 992px) {
   .section {
     padding: var(--section-padding-y-lg-tablet) 0;
@@ -74,20 +154,50 @@
     grid-template-columns: repeat(8, 1fr);
     width: 100%;
     padding: 0 var(--page-padding-tablet);
-    box-sizing: border-box;
     grid-template-rows: auto auto auto;
   }
 
   .headline {
-    grid-column: 1 / 9;
+    grid-column: 1 / 5;
+    grid-row: 1;
   }
 
   .bio {
-    grid-column: 1 / 5;
+    grid-column: 1 / 9;
+    grid-row: 3;
   }
 
   .imageWrapper {
-    grid-column: 5 / 9;
+    grid-column: 1 / 9;
+    grid-row: 2;
+  }
+
+  .sectionEducation {
+    padding: var(--section-padding-y-lg-tablet) 0;
+    order: 2;
+  }
+
+  .sectionExperience {
+    padding: var(--section-padding-y-lg-tablet) 0;
+    order: 1;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sectionContent {
+    grid-template-columns: repeat(8, 1fr);
+    padding: 0 var(--page-padding-tablet);
+  }
+
+  .sectionHeading {
+    grid-column: 1 / 6;
+  }
+
+  .entryList {
+    grid-column: 1 / 9;
   }
 }
 
@@ -101,21 +211,42 @@
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     padding: 0 var(--page-padding-mobile);
-    box-sizing: border-box;
     grid-template-rows: auto auto auto;
   }
 
   .headline {
     grid-column: 1 / 5;
+    grid-row: 1;
   }
 
   .bio {
     grid-column: 1 / 5;
-    grid-row: 2;
+    grid-row: 3;
   }
 
   .imageWrapper {
     grid-column: 1 / 5;
-    grid-row: 3;
+    grid-row: 2;
+  }
+
+  .sectionEducation {
+    padding: var(--section-padding-y-lg-mobile) 0;
+  }
+
+  .sectionExperience {
+    padding: var(--section-padding-y-lg-mobile) 0;
+  }
+
+  .sectionContent {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 var(--page-padding-mobile);
+  }
+
+  .sectionHeading {
+    grid-column: 1 / 5;
+  }
+
+  .entryList {
+    grid-column: 1 / 5;
   }
 }

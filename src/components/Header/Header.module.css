@@ -15,10 +15,12 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: var(--grid-gap);
-  max-width: var(--header-max-width);
   width: 100%;
   margin-inline: auto;
   align-items: center;
+  max-width: 1376px;
+  width: 100%;
+  /* padding: 0 var(--page-padding); */
 }
 
 .logoLink {

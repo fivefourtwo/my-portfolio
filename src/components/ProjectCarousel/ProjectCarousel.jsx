@@ -80,7 +80,7 @@ const ProjectCarousel = ({ variant }) => {
 
   const [imageWidth, setImageWidth] = useState(IMAGE_WIDTH_DESKTOP);
   const step = imageWidth + IMAGE_GAP;
-  const loopOffset = 5 * step;
+  const loopOffset = 5 * step; // this is the total width of the carousel (triggering the loop-reset)
   const loopOffsetRef = useRef(loopOffset);
 
   useEffect(() => {
@@ -181,8 +181,8 @@ const ProjectCarousel = ({ variant }) => {
     }
   };
 
-  /* Duplicate images for seamless looping */
-  const loopedImages = [...images, ...images];
+  /* 3-set technique: left set (-1), middle (0), right (1) for seamless loop with left overflow */
+  const loopedImages = [...images, ...images, ...images];
 
   return (
     <article className={styles.carousel}>
@@ -201,20 +201,23 @@ const ProjectCarousel = ({ variant }) => {
         <div
           ref={stripRef}
           className={styles.imageStripInner}
-          style={{ width: `${2 * loopOffset}px` }}
+          style={{ width: `${3 * loopOffset}px` }}
         >
-          {loopedImages.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt=""
-              aria-hidden="true"
-              className={styles.image}
-              style={{
-                left: `${(i % 5) * step + Math.floor(i / 5) * loopOffset}px`,
-              }}
-            />
-          ))}
+          {loopedImages.map((src, i) => {
+            const setIndex = Math.floor(i / images.length) - 1;
+            return (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                aria-hidden="true"
+                className={styles.image}
+                style={{
+                  left: `${(i % images.length) * step + setIndex * loopOffset}px`,
+                }}
+              />
+            );
+          })}
         </div>
       </div>
 
