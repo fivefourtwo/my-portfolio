@@ -18,9 +18,9 @@ const Header = ({ projectTitle }) => {
         <Link to="/about" className={styles.infoLink}>
           About
         </Link>
-        <a href="mailto:fabricerio.design@gmail.com" className={styles.contactLink}>
+        <Link to="/contact" className={styles.contactLink}>
           Contact
-        </a>
+        </Link>
         {projectTitle && (
           <span className={styles.projectTitle}>{projectTitle}</span>
         )}

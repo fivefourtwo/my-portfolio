@@ -5,6 +5,7 @@ import About from './pages/About/About'
 import WorkCatalogic from './pages/WorkCatalogic/WorkCatalogic'
 import WorkTeachSmartSteps from './pages/WorkTeachSmartSteps/WorkTeachSmartSteps'
 import WorkAccessAbility from './pages/WorkAccessAbility/WorkAccessAbility'
+import Contact from './pages/Contact/Contact'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation()
@@ -24,6 +25,7 @@ const App = () => {
       <Route path="/work/catalogic" element={<WorkCatalogic />} />
       <Route path="/work/teach-smart-steps" element={<WorkTeachSmartSteps />} />
       <Route path="/work/accessability" element={<WorkAccessAbility />} />
+      <Route path="/contact" element={<Contact />} />
       </Routes>
     </>
   )
