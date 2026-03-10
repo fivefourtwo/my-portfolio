@@ -5,25 +5,25 @@ import buttonStyles from '../Button/Button.module.css';
 import styles from './ProjectCarousel.module.css';
 
 /* catalogic (project-carousel) */
-import catalogic1 from '../../assets-new/catalogic-assets/project-carousel/key-visual.jpg';
-import catalogic2 from '../../assets-new/catalogic-assets/project-carousel/similarity-map-mockup.jpg';
-import catalogic3 from '../../assets-new/catalogic-assets/project-carousel/labels-mockup.jpg';
-import catalogic4 from '../../assets-new/catalogic-assets/project-carousel/tracks-mockup.jpg';
-import catalogic5 from '../../assets-new/catalogic-assets/project-carousel/analysis-mockup.jpg';
+import catalogic1 from '../../assets-new/catalogic-assets/project-carousel/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
+import catalogic2 from '../../assets-new/catalogic-assets/project-carousel/similarity-map-mockup.jpg?w=800;1200;1600&format=webp&as=img';
+import catalogic3 from '../../assets-new/catalogic-assets/project-carousel/labels-mockup.jpg?w=800;1200;1600&format=webp&as=img';
+import catalogic4 from '../../assets-new/catalogic-assets/project-carousel/tracks-mockup.jpg?w=800;1200;1600&format=webp&as=img';
+import catalogic5 from '../../assets-new/catalogic-assets/project-carousel/analysis-mockup.jpg?w=800;1200;1600&format=webp&as=img';
 
 /* teachsmartsteps */
-import tss1 from '../../assets-new/teachsmartsteps-assets/tss-carousel/key-visual.jpg';
-import tss2 from '../../assets-new/teachsmartsteps-assets/tss-carousel/components.jpg';
-import tss3 from '../../assets-new/teachsmartsteps-assets/tss-carousel/editor-macbook.jpg';
-import tss4 from '../../assets-new/teachsmartsteps-assets/tss-carousel/output.jpg';
-import tss5 from '../../assets-new/teachsmartsteps-assets/tss-carousel/output-mockup.jpg';
+import tss1 from '../../assets-new/teachsmartsteps-assets/tss-carousel/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
+import tss2 from '../../assets-new/teachsmartsteps-assets/tss-carousel/components.jpg?w=800;1200;1600&format=webp&as=img';
+import tss3 from '../../assets-new/teachsmartsteps-assets/tss-carousel/editor-macbook.jpg?w=800;1200;1600&format=webp&as=img';
+import tss4 from '../../assets-new/teachsmartsteps-assets/tss-carousel/output.jpg?w=800;1200;1600&format=webp&as=img';
+import tss5 from '../../assets-new/teachsmartsteps-assets/tss-carousel/output-mockup.jpg?w=800;1200;1600&format=webp&as=img';
 
 /* accessability */
-import access1 from '../../assets-new/accessability-assets/accessability-carousel/key-visual.jpg';
-import access2 from '../../assets-new/accessability-assets/accessability-carousel/first-prototypes.jpg';
-import access3 from '../../assets-new/accessability-assets/accessability-carousel/3d-prototype-testing.jpg';
-import access4 from '../../assets-new/accessability-assets/accessability-carousel/3d-prototype.jpg';
-import access5 from '../../assets-new/accessability-assets/accessability-carousel/rendering.jpg';
+import access1 from '../../assets-new/accessability-assets/accessability-carousel/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
+import access2 from '../../assets-new/accessability-assets/accessability-carousel/first-prototypes.jpg?w=800;1200;1600&format=webp&as=img';
+import access3 from '../../assets-new/accessability-assets/accessability-carousel/3d-prototype-testing.jpg?w=800;1200;1600&format=webp&as=img';
+import access4 from '../../assets-new/accessability-assets/accessability-carousel/3d-prototype.jpg?w=800;1200;1600&format=webp&as=img';
+import access5 from '../../assets-new/accessability-assets/accessability-carousel/rendering.jpg?w=800;1200;1600&format=webp&as=img';
 
 const IMAGES = {
   catalogic: [catalogic1, catalogic2, catalogic3, catalogic4, catalogic5],
@@ -143,41 +143,69 @@ const ProjectCarousel = ({ variant }) => {
     return () => el.removeEventListener('wheel', handleWheel);
   }, []);
 
-  const handlePointerDown = (e) => {
-    if (e.button !== 0) return;
-    e.preventDefault();
-    e.currentTarget.setPointerCapture(e.pointerId);
+  const startDrag = (clientX) => {
     isDraggingRef.current = true;
     setIsDragging(true);
-    dragStartXRef.current = e.clientX;
+    dragStartXRef.current = clientX;
     dragStartOffsetRef.current = scrollOffsetRef.current;
   };
 
-  const handlePointerMove = (e) => {
+  const updateDrag = (clientX) => {
     if (!isDraggingRef.current) return;
     const offset = loopOffsetRef.current;
-    const delta = e.clientX - dragStartXRef.current;
+    const delta = clientX - dragStartXRef.current;
     /* Drag right = reveal content from left = decrease offset */
     let newOffset = dragStartOffsetRef.current - delta;
     newOffset = ((newOffset % offset) + offset) % offset;
     scrollOffsetRef.current = newOffset;
-    dragStartXRef.current = e.clientX;
+    dragStartXRef.current = clientX;
     dragStartOffsetRef.current = newOffset;
     if (stripRef.current) {
       stripRef.current.style.transform = `translateX(-${newOffset}px)`;
     }
   };
 
-  const handlePointerUp = () => {
+  const endDrag = () => {
     isDraggingRef.current = false;
     setIsDragging(false);
+  };
+
+  const handlePointerDown = (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    e.currentTarget.setPointerCapture(e.pointerId);
+    startDrag(e.clientX);
+  };
+
+  const handlePointerMove = (e) => {
+    updateDrag(e.clientX);
+  };
+
+  const handlePointerUp = () => {
+    endDrag();
+  };
+
+  /* Touch fallback for browsers without Pointer Events support */
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 0) return;
+    const touch = e.touches[0];
+    startDrag(touch.clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches.length === 0) return;
+    const touch = e.touches[0];
+    updateDrag(touch.clientX);
+  };
+
+  const handleTouchEnd = () => {
+    endDrag();
   };
 
   const handlePointerLeave = () => {
     setIsHovered(false);
     if (isDraggingRef.current) {
-      isDraggingRef.current = false;
-      setIsDragging(false);
+      endDrag();
     }
   };
 
@@ -196,6 +224,10 @@ const ProjectCarousel = ({ variant }) => {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
         style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
       >
         <div
@@ -203,12 +235,16 @@ const ProjectCarousel = ({ variant }) => {
           className={styles.imageStripInner}
           style={{ width: `${3 * loopOffset}px` }}
         >
-          {loopedImages.map((src, i) => {
+          {loopedImages.map((imgMeta, i) => {
             const setIndex = Math.floor(i / images.length) - 1;
             return (
               <img
                 key={i}
-                src={src}
+                src={imgMeta.src}
+                srcSet={imgMeta.srcset}
+                sizes="(max-width: 480px) 569px, (max-width: 992px) 569px, 711px"
+                width={imgMeta.w}
+                height={imgMeta.h}
                 alt=""
                 aria-hidden="true"
                 className={styles.image}

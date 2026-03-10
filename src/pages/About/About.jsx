@@ -1,7 +1,7 @@
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import styles from './About.module.css'
-import profileImage from '../../assets-new/IMG_6667 2 1.jpg'
+import profileImage from '../../assets-new/aboutme.jpg?w=800;1200;1600&format=webp&as=img'
 
 const EDUCATION = [
   {
@@ -56,7 +56,11 @@ const About = () => {
             </p>
             <div className={styles.imageWrapper}>
               <img
-                src={profileImage}
+                src={profileImage.src}
+                srcSet={profileImage.srcset}
+                sizes="(max-width: 480px) 100vw, (max-width: 992px) 100vw, 50vw"
+                width={profileImage.w}
+                height={profileImage.h}
                 alt="Portrait of Fabrice Rio"
                 className={styles.profileImage}
               />

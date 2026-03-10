@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import styles from './SectionHero.module.css';
 
-import keyVisualCatalogic from '../../assets-new/catalogic-assets/key-visual.jpg';
-import keyVisualTeachSmartSteps from '../../assets-new/teachsmartsteps-assets/key-visual.jpg';
-import keyVisualAccessAbility from '../../assets-new/accessability-assets/key-visual.jpg';
+import keyVisualCatalogic from '../../assets-new/catalogic-assets/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
+import keyVisualTeachSmartSteps from '../../assets-new/teachsmartsteps-assets/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
+import keyVisualAccessAbility from '../../assets-new/accessability-assets/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
 
 const PROJECTS = {
   Catalogic: {
@@ -62,7 +62,11 @@ const SectionHero = ({ project }) => {
   return (
     <section className={styles.section} aria-labelledby="project-context">
       <img
-        src={data.keyVisual}
+        src={data.keyVisual.src}
+        srcSet={data.keyVisual.srcset}
+        sizes="(max-width: 480px) 100vw, (max-width: 992px) 100vw, 75vw"
+        width={data.keyVisual.w}
+        height={data.keyVisual.h}
         alt={data.keyVisualAlt}
         className={styles.keyVisual}
       />
