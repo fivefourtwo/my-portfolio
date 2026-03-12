@@ -89,9 +89,9 @@ const Contact = () => {
                 Let&apos;s build something.
               </h1>
               <p className={styles.intro}>
-                I&apos;m currently available for freelance projects and internships.
-                If you have a project in mind, or just want to chat about interaction
-                design, feel free to reach out.
+                I&apos;m currently exploring full-time roles and freelance collaborations. 
+                Whether you have an open position on your team or a specific project in mind,
+                 let's connect.
               </p>
             </div>
 

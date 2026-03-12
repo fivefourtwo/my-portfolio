@@ -9,7 +9,7 @@ const PROJECTS = {
   Catalogic: {
     context:
       'AI-powered tool for cataloging and managing music libraries for DJs',
-    team: 'Jannik Aßfalg & Fabrice Rio',
+    team: 'Jannik Aßfalg, Fabrice Rio',
     projectContext: 'Bachelor thesis',
     myRole: 'Research, Concept, Visual Design, Prototyping, Testing',
     duration: '20 Weeks',
@@ -20,7 +20,7 @@ const PROJECTS = {
   TeachSmartSteps: {
     context:
       'A flexible task-generation tool that helps primary school teachers integrate media literacy into everyday teaching.',
-    team: 'Lea Hafebier, Nina Hielscher & me',
+    team: 'Lea Hafebier, Nina Hielscher, Fabrice Rio',
     projectContext: '6th semester project, Lean Design',
     myRole: 'Ideation, Research, Concept, Prototyping',
     duration: '8 Weeks',
