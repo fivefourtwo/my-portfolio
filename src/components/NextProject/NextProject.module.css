@@ -1,0 +1,133 @@
+/* Local tokens not in global tokens.css */
+.section {
+  --hoverGrey: #f5f5f5;
+}
+
+.section {
+  width: 100%;
+  border-top: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 120px var(--page-padding);
+  text-decoration: none;
+  color: var(--black);
+  transition: background-color 0.4s ease;
+  text-align: center;
+  width: 100%;
+}
+
+.block:hover {
+  background-color: var(--hoverGrey);
+}
+
+.block:focus {
+  outline: none;
+}
+
+.block:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
+.navLabel {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--dark-grey);
+  /* text-transform: uppercase; */
+  letter-spacing: 2px;
+  margin-bottom: 32px;
+}
+
+.navTitleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.navTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: var(--line-height-headline);
+}
+
+.navIcon {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+}
+
+.block:hover .navIcon {
+  transform: translateX(16px);
+}
+
+/* ---- Tablet (max 992px) ---- */
+@media (max-width: 992px) {
+  .block {
+    padding: 96px var(--page-padding-tablet);
+  }
+
+  .navTitle {
+    font-size: 56px;
+    letter-spacing: -1.5px;
+  }
+
+  .navTitleWrapper {
+    gap: 20px;
+  }
+}
+
+/* ---- Mobile (max 768px) ---- */
+@media (max-width: 768px) {
+  .block {
+    padding: 80px var(--page-padding-mobile);
+  }
+
+  .navTitleWrapper {
+    gap: 16px;
+  }
+
+  .navTitle {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+
+  .navIcon svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ---- Small Mobile (max 480px) ---- */
+@media (max-width: 480px) {
+  .block {
+    padding: 64px var(--page-padding-mobile);
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .navTitleWrapper {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .navTitle {
+    font-size: var(--text-h2);
+  }
+}

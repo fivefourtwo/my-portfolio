@@ -31,9 +31,14 @@
 }
 
 .logo {
-  width: 24px;
+  width: fit-content;
   height: 24px;
   display: block;
+  object-fit: contain;
+}
+
+.logoHidden {
+  display: none;
 }
 
 .logoLink:focus {

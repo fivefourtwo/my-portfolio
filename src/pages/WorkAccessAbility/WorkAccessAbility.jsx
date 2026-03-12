@@ -1,6 +1,7 @@
 import Header from '../../components/Header/Header';
 import SectionHero from '../../components/SectionHero/SectionHero';
 import CarouselComponentVar from '../../components/CarouselComponentVar/CarouselComponentVar';
+import NextProject from '../../components/NextProject/NextProject';
 import Footer from '../../components/Footer/Footer';
 import styles from './WorkAccessAbility.module.css';
 
@@ -207,6 +208,7 @@ const WorkAccessAbility = () => {
           headline="Theoretical models required constant validation through physical prototypes."
         />
       </main>
+      <NextProject title="Catalogic" href="/work/catalogic" />
       <Footer />
     </>
   );

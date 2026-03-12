@@ -1,6 +1,7 @@
 import Header from '../../components/Header/Header';
 import SectionHero from '../../components/SectionHero/SectionHero';
 import SwitchComponentVar from '../../components/SwitchComponentVar/SwitchComponentVar';
+import NextProject from '../../components/NextProject/NextProject';
 import Footer from '../../components/Footer/Footer';
 import styles from './WorkCatalogic.module.css';
 
@@ -282,6 +283,7 @@ const WorkCatalogic = () => {
           <SwitchComponentVar />
         </section>
       </main>
+      <NextProject title="Teach Smart Steps" href="/work/teach-smart-steps" />
       <Footer />
     </>
   );

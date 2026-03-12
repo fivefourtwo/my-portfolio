@@ -1,6 +1,7 @@
 import Header from '../../components/Header/Header';
 import SectionHero from '../../components/SectionHero/SectionHero';
 import UseCasesComponentVar from '../../components/UseCasesComponentVar/UseCasesComponentVar';
+import NextProject from '../../components/NextProject/NextProject';
 import Footer from '../../components/Footer/Footer';
 import styles from './WorkTeachSmartSteps.module.css';
 
@@ -191,6 +192,7 @@ const WorkTeachSmartSteps = () => {
           </div>
         </section>
       </main>
+      <NextProject title="AccessAbility" href="/work/accessability" />
       <Footer />
     </>
   );
