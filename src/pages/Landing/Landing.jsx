@@ -1,4 +1,5 @@
 import * as FM from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import ProjectCarousel from '../../components/ProjectCarousel/ProjectCarousel'
@@ -12,6 +13,8 @@ const sectionViewport = { once: true, amount: 0.15, margin: '0px 0px -48px 0px' 
 
 const Landing = () => {
   const prefersReducedMotion = FM.useReducedMotion()
+  const heroRef = useRef(null)
+  const rippleRef = useRef(null)
   const duration = prefersReducedMotion ? 0 : 0.55
 
   const heroItemHidden = prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
@@ -41,11 +44,121 @@ const Landing = () => {
     },
   }
 
+  useEffect(() => {
+    const heroEl = heroRef.current
+
+    if (!heroEl || prefersReducedMotion) {
+      return
+    }
+
+    let frameId = 0
+    let targetX = 0.5
+    let targetY = 0.35
+    let currentX = 0.5
+    let currentY = 0.35
+
+    const animate = () => {
+      currentX += (targetX - currentX) * 0.14
+      currentY += (targetY - currentY) * 0.14
+
+      const driftX = (currentX - 0.5) * 22
+      const driftY = (currentY - 0.5) * 18
+
+      heroEl.style.setProperty('--mouse-x', `${(currentX * 100).toFixed(2)}%`)
+      heroEl.style.setProperty('--mouse-y', `${(currentY * 100).toFixed(2)}%`)
+      heroEl.style.setProperty('--grid-shift-x', `${driftX.toFixed(2)}px`)
+      heroEl.style.setProperty('--grid-shift-y', `${driftY.toFixed(2)}px`)
+
+      const done =
+        Math.abs(targetX - currentX) < 0.0015 &&
+        Math.abs(targetY - currentY) < 0.0015
+
+      if (!done) {
+        frameId = window.requestAnimationFrame(animate)
+      } else {
+        frameId = 0
+      }
+    }
+
+    const scheduleAnimation = () => {
+      if (!frameId) {
+        frameId = window.requestAnimationFrame(animate)
+      }
+    }
+
+    const updateFromPointer = (event) => {
+      const rect = heroEl.getBoundingClientRect()
+      const x = (event.clientX - rect.left) / rect.width
+      const y = (event.clientY - rect.top) / rect.height
+
+      targetX = Math.max(0, Math.min(1, x))
+      targetY = Math.max(0, Math.min(1, y))
+      scheduleAnimation()
+    }
+
+    const handlePointerEnter = (event) => {
+      heroEl.style.setProperty('--mouse-active', '1')
+      updateFromPointer(event)
+    }
+
+    const handlePointerMove = (event) => {
+      updateFromPointer(event)
+    }
+
+    const handlePointerLeave = () => {
+      heroEl.style.setProperty('--mouse-active', '0')
+      targetX = 0.5
+      targetY = 0.35
+      scheduleAnimation()
+    }
+
+    const triggerRipple = (event) => {
+      if (prefersReducedMotion || !rippleRef.current) {
+        return
+      }
+
+      const rect = heroEl.getBoundingClientRect()
+      const x = ((event.clientX - rect.left) / rect.width) * 100
+      const y = ((event.clientY - rect.top) / rect.height) * 100
+      const rippleEl = rippleRef.current
+
+      rippleEl.style.setProperty('--ripple-x', `${x.toFixed(2)}%`)
+      rippleEl.style.setProperty('--ripple-y', `${y.toFixed(2)}%`)
+      rippleEl.classList.remove(styles.rippleActive)
+      // Reflow to restart keyframe animation on repeated clicks.
+      void rippleEl.offsetWidth
+      rippleEl.classList.add(styles.rippleActive)
+    }
+
+    heroEl.style.setProperty('--mouse-x', '50%')
+    heroEl.style.setProperty('--mouse-y', '35%')
+    heroEl.style.setProperty('--mouse-active', '0')
+    heroEl.style.setProperty('--grid-shift-x', '0px')
+    heroEl.style.setProperty('--grid-shift-y', '0px')
+
+    heroEl.addEventListener('pointerenter', handlePointerEnter)
+    heroEl.addEventListener('pointermove', handlePointerMove)
+    heroEl.addEventListener('pointerleave', handlePointerLeave)
+    heroEl.addEventListener('pointerdown', triggerRipple)
+
+    return () => {
+      heroEl.removeEventListener('pointerenter', handlePointerEnter)
+      heroEl.removeEventListener('pointermove', handlePointerMove)
+      heroEl.removeEventListener('pointerleave', handlePointerLeave)
+      heroEl.removeEventListener('pointerdown', triggerRipple)
+
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+    }
+  }, [prefersReducedMotion])
+
   return (
     <>
       <Header />
       <main className={styles.page}>
-        <section className={styles.hero}>
+        <section className={styles.hero} ref={heroRef}>
+          <span className={styles.heroRipple} ref={rippleRef} aria-hidden="true" />
           <div className={styles.heroInner}>
             <FM.motion.div
               className={styles.heroContent}
