@@ -7,11 +7,6 @@
 
 .hero {
   --hero-grid-inset-x: var(--page-padding);
-  --hero-grid-size: clamp(20px, 3.2vw, 28px);
-  --hero-grid-line: color-mix(in srgb, var(--dark-grey) 4%, transparent);
-  --hero-grid-line-strong: color-mix(in srgb, var(--dark-grey) 6%, transparent);
-  --hero-grid-fade-start: 58%;
-  --hero-grid-fade-end: 100%;
   --mouse-x: 50%;
   --mouse-y: 35%;
   --mouse-active: 0;
@@ -25,45 +20,8 @@
   flex-direction: column;
   align-items: center;
   padding: var(--section-padding-y-lg) 0 40px;
-  overflow: clip;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0 var(--hero-grid-inset-x);
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, var(--hero-grid-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--hero-grid-line) 1px, transparent 1px),
-    linear-gradient(to right, var(--hero-grid-line-strong) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--hero-grid-line-strong) 1px, transparent 1px);
-  background-size:
-    var(--hero-grid-size) var(--hero-grid-size),
-    var(--hero-grid-size) var(--hero-grid-size),
-    calc(var(--hero-grid-size) * 4) calc(var(--hero-grid-size) * 4),
-    calc(var(--hero-grid-size) * 4) calc(var(--hero-grid-size) * 4);
-  background-position:
-    var(--grid-shift-x) var(--grid-shift-y),
-    var(--grid-shift-x) var(--grid-shift-y),
-    var(--grid-shift-x) var(--grid-shift-y),
-    var(--grid-shift-x) var(--grid-shift-y);
-  opacity: calc(0.9 + (var(--mouse-active) * 0.05));
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 14%,
-    black var(--hero-grid-fade-start),
-    transparent var(--hero-grid-fade-end)
-  );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    black 14%,
-    black var(--hero-grid-fade-start),
-    transparent var(--hero-grid-fade-end)
-  );
+  /* Allow HeroGrid horizontal lines to span 100vw (breakout from max-width). */
+  overflow: visible;
 }
 
 .hero::after {
@@ -197,7 +155,6 @@
 @media (max-width: 992px) {
   .hero {
     --hero-grid-inset-x: var(--page-padding-tablet);
-    --hero-grid-size: clamp(18px, 3.8vw, 24px);
     padding: var(--section-padding-y-lg-tablet) 0 40px;
   }
 
@@ -226,8 +183,6 @@
 @media (max-width: 480px) {
   .hero {
     --hero-grid-inset-x: var(--page-padding-mobile);
-    --hero-grid-size: clamp(16px, 5.8vw, 20px);
-    --hero-grid-fade-start: 50%;
     min-height: auto;
     padding: var(--section-padding-y-lg-mobile) 0 40px;
   }
@@ -254,11 +209,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero::before {
-    background-position: 0 0, 0 0, 0 0, 0 0;
-    opacity: 0.85;
-  }
-
   .hero::after {
     display: none;
   }

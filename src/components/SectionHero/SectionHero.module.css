@@ -17,9 +17,17 @@
   object-fit: cover;
 }
 
-.context {
+.contextColumn {
   grid-column: 10 / 13;
   grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.context {
   font-family: var(--font-body);
   font-size: var(--text-body);
   font-weight: 400;
@@ -35,6 +43,11 @@
   flex-direction: column;
   gap: 10px;
   align-items: stretch;
+}
+
+.repositoryButton {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .infoBlockLeft,
@@ -87,7 +100,7 @@
     grid-row: 1;
   }
 
-  .context {
+  .contextColumn {
     grid-column: 1 / 9;
     grid-row: 2;
   }
@@ -140,7 +153,7 @@
     grid-row: 1;
   }
 
-  .context {
+  .contextColumn {
     grid-column: 1 / 5;
     grid-row: 2;
   }

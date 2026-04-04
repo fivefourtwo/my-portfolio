@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import Button from '../Button/Button';
 import styles from './SectionHero.module.css';
 
 import keyVisualCatalogic from '../../assets-new/catalogic-assets/key-visual.jpg?w=800;1200;1600&format=webp&as=img';
@@ -16,6 +17,7 @@ const PROJECTS = {
     year: '2025',
     keyVisual: keyVisualCatalogic,
     keyVisualAlt: 'Catalogic project key visual',
+    repositoryUrl: 'https://github.com/fivefourtwo/catalogic',
   },
   TeachSmartSteps: {
     context:
@@ -27,6 +29,7 @@ const PROJECTS = {
     year: '2024/25',
     keyVisual: keyVisualTeachSmartSteps,
     keyVisualAlt: 'TeachSmartSteps project key visual',
+    repositoryUrl: 'https://github.com/fivefourtwo/teach-smart-steps',
   },
   AccessAbility: {
     context:
@@ -70,9 +73,21 @@ const SectionHero = ({ project }) => {
         alt={data.keyVisualAlt}
         className={styles.keyVisual}
       />
-      <p id="project-context" className={styles.context}>
-        {data.context}
-      </p>
+      <div className={styles.contextColumn}>
+        <p id="project-context" className={styles.context}>
+          {data.context}
+        </p>
+        {data.repositoryUrl ? (
+          <Button
+            variant="large"
+            href={data.repositoryUrl}
+            largeLabel="View repository"
+            className={styles.repositoryButton}
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+        ) : null}
+      </div>
       <div className={styles.infoBlock}>
         <div className={styles.infoBlockLeft}>
           <hr className={styles.divider} aria-hidden="true" />

@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import ProjectCarousel from '../../components/ProjectCarousel/ProjectCarousel'
+import HeroGrid from '../../components/HeroGrid/HeroGrid'
 import styles from './Landing.module.css'
 
 const easeOut = [0.22, 1, 0.36, 1]
@@ -158,6 +159,7 @@ const Landing = () => {
       <Header />
       <main className={styles.page}>
         <section className={styles.hero} ref={heroRef}>
+          <HeroGrid />
           <span className={styles.heroRipple} ref={rippleRef} aria-hidden="true" />
           <div className={styles.heroInner}>
             <FM.motion.div

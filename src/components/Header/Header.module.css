@@ -115,7 +115,7 @@
   }
 
   .projectTitle {
-    grid-column: 6 / 9;
+    grid-column: 4 / 9;
     text-align: right;
   }
 }

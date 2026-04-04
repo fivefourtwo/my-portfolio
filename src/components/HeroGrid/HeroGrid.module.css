@@ -1,0 +1,119 @@
+/* Full-viewport-width shell for horizontal lines; vertical lines stay content-inset.
+   Inherits from hero: --hero-grid-inset-x, --grid-shift-x/y, --mouse-active */
+.root {
+  --grid-line-color: color-mix(in srgb, var(--dark-grey) 12%, transparent);
+  --grid-tile: 160px;
+  --grid-fade-start: 58%;
+  --grid-fade-end: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  max-width: none;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: calc(0.9 + (var(--mouse-active) * 0.05));
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 14%,
+    black var(--grid-fade-start),
+    transparent var(--grid-fade-end)
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 14%,
+    black var(--grid-fade-start),
+    transparent var(--grid-fade-end)
+  );
+}
+
+.horizontal {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    var(--grid-line-color) 0px,
+    var(--grid-line-color) 1px,
+    transparent 1px,
+    transparent 40px,
+    var(--grid-line-color) 40px,
+    var(--grid-line-color) 41px,
+    transparent 41px,
+    transparent 80px,
+    var(--grid-line-color) 80px,
+    var(--grid-line-color) 81px,
+    transparent 81px,
+    transparent 84px,
+    var(--grid-line-color) 84px,
+    var(--grid-line-color) 85px,
+    transparent 85px,
+    transparent 116px,
+    var(--grid-line-color) 116px,
+    var(--grid-line-color) 117px,
+    transparent 117px,
+    transparent 120px,
+    var(--grid-line-color) 120px,
+    var(--grid-line-color) 121px,
+    transparent 121px,
+    transparent 160px
+  );
+  background-size: var(--grid-tile) var(--grid-tile);
+  background-repeat: repeat;
+  background-position: var(--grid-shift-x) var(--grid-shift-y);
+}
+
+.vertical {
+  position: absolute;
+  inset: 0 var(--hero-grid-inset-x);
+  background-image: linear-gradient(
+    to right,
+    var(--grid-line-color) 0px,
+    var(--grid-line-color) 1px,
+    transparent 1px,
+    transparent 40px,
+    var(--grid-line-color) 40px,
+    var(--grid-line-color) 41px,
+    transparent 41px,
+    transparent 80px,
+    var(--grid-line-color) 80px,
+    var(--grid-line-color) 81px,
+    transparent 81px,
+    transparent 84px,
+    var(--grid-line-color) 84px,
+    var(--grid-line-color) 85px,
+    transparent 85px,
+    transparent 116px,
+    var(--grid-line-color) 116px,
+    var(--grid-line-color) 117px,
+    transparent 117px,
+    transparent 120px,
+    var(--grid-line-color) 120px,
+    var(--grid-line-color) 121px,
+    transparent 121px,
+    transparent 160px
+  );
+  background-size: var(--grid-tile) var(--grid-tile);
+  background-repeat: repeat;
+  background-position: var(--grid-shift-x) var(--grid-shift-y);
+}
+
+@media (max-width: 480px) {
+  .root {
+    --grid-fade-start: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizontal,
+  .vertical {
+    background-position: 0 0;
+  }
+
+  .root {
+    opacity: 0.85;
+  }
+}

@@ -8,6 +8,7 @@ const Button = ({
   onClick,
   className = '',
   disabled = false,
+  largeLabel = 'View Project',
   ...rest
 }) => {
   const variantClass = styles[variant];
@@ -19,7 +20,7 @@ const Button = ({
   const content =
     variant === 'large' ? (
       <>
-        <span className={styles.label}>View Project</span>
+        <span className={styles.label}>{largeLabel}</span>
         <ArrowRight size={20} aria-hidden />
       </>
     ) : variant === 'ghost' ? (
