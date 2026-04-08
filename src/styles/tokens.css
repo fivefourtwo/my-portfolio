@@ -37,6 +37,14 @@
   --text-small: 14px;
   --line-height-headline: 1.15;
 
+  /* Typography Var*/
+  /* --text-display: 40px;
+  --text-h1: 40px;
+  --text-h2: 24px;
+  --text-body: 16px;
+  --text-small: 14px;
+  --line-height-headline: 1.15; */
+
   /* Layout */
   --content-width: 1200px;
   --full-width: 1440px;
