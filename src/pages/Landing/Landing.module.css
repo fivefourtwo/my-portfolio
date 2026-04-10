@@ -74,8 +74,8 @@
 .photoCaption {
   position: absolute;
   /* right: calc(46px + clamp(180px, 22vw, 320px) + 24px); */
-  right: 80px;
-  top: 40vh;
+  left: var(--page-padding);
+  top: 466px;
   transform: translateY(-50%);
   font-size: var(--text-h2);
   font-style: bold;

@@ -153,7 +153,7 @@ const Landing = () => {
           <HeroGrid />
           <div className={styles.photoWrap} aria-hidden="true">
             <img src={aboutMeImg} alt="" className={styles.photo} />
-            <span className={styles.photoCaption}>I like to pitch in :)</span>
+            <span className={styles.photoCaption}>I also don't mind doing the heavy lifting →</span>
           </div>
           <span className={styles.heroRipple} ref={rippleRef} aria-hidden="true" />
           <div className={styles.heroInner}>
