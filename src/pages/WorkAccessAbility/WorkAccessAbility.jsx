@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import SectionHero from '../../components/SectionHero/SectionHero';
 import CarouselComponentVar from '../../components/CarouselComponentVar/CarouselComponentVar';
 import Footer from '../../components/Footer/Footer';
+import CaseStudyChat from '../../components/CaseStudyChat/CaseStudyChat';
 import styles from './WorkAccessAbility.module.css';
 
 const easeOut = [0.22, 1, 0.36, 1];
@@ -237,6 +238,7 @@ const WorkAccessAbility = () => {
         </FM.motion.div>
       </main>
       <Footer />
+      <CaseStudyChat caseStudy="accessability" />
     </>
   );
 };

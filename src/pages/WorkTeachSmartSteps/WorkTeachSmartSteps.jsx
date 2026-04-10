@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import SectionHero from '../../components/SectionHero/SectionHero';
 import UseCasesComponentVar from '../../components/UseCasesComponentVar/UseCasesComponentVar';
 import Footer from '../../components/Footer/Footer';
+import CaseStudyChat from '../../components/CaseStudyChat/CaseStudyChat';
 import styles from './WorkTeachSmartSteps.module.css';
 
 const easeOut = [0.22, 1, 0.36, 1];
@@ -218,6 +219,7 @@ const WorkTeachSmartSteps = () => {
         </FM.motion.section>
       </main>
       <Footer />
+      <CaseStudyChat caseStudy="teachsmartsteps" />
     </>
   );
 };
